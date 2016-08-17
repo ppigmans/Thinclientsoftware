@@ -1,0 +1,12 @@
+#!/bin/bash
+whiptail --yesno "Weet u zeker dat u wilt uitloggen?" --yes-button "Ja" --no-button "nee" 10 70
+
+CHOICEs=$?
+
+if [ $CHOICEs == 0 ];
+then
+pkill python
+else
+exit
+fi
+

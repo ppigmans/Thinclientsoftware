@@ -1,0 +1,92 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#title           : TBMenu
+#Omschijving     : Geeft een simpel menu weer dat interactief is/shows a menu which is interactive
+#Made by         : Patrick Pigmans
+#Made for        : Servicenet-ITF
+#Made at         : 2nd of August 2016
+#python_version  : 2.7.12/3.5.2
+#=======================================================================#
+
+import Tkinter
+from Tkinter import *
+import subprocess
+import os
+from os import system as cmd
+
+def test():
+    os.system('xterm -into %d -geometry 160x38+0-0 -e sudo overscan &' % wid)
+
+def sysinfo():
+    os.system('xterm -into %d -geometry 160x38+0-0 -e sudo systeminfo')
+
+def ipconf():
+    os.system('xterm -into %d -geometry 160x38+0-0 -e ipconfig &' % wid)
+
+def mwpl():
+    os.system('xterm -into %d -geometry 160x38+0-0  -e firefox http://myworkplace.21groep.nl' % wid)
+
+def vm():
+    os.system('xterm -into %d -geometry 160x38+0-0 -e sudo alsmixer' % wid )
+
+def mywpled():
+    os.system('xterm -into %d -geometry 160x38+0-0 -e sudo mywplced' % wid )
+
+def lout():
+    os.system('xterm -into %d -geometry 160x38+0-0  -e uitloggen' % wid)
+
+def rboot():
+    os.system('xterm -into %d -geometry 160x38+0-0  -e herstarten' % wid)
+
+def pwoff(): 
+    os.system('xterm -into %d -geometry 160x38+0-0  -e afsluiten' % wid)
+  
+WINDOW_SIZE = "1440x900"
+top = Tkinter.Tk()
+top.geometry(WINDOW_SIZE)
+
+Button1  = Tkinter.Button(top, text ="Systeem informatie opvragen", command=sysinfo)
+Button1.pack()
+
+Button2  = Tkinter.Button(top, text ="IP adres achterhalen", command = ipconf)
+Button2.pack()
+
+Button3  = Tkinter.Button(top, text ="Zwarte balken weghalen", command = test)
+Button3.pack()
+
+Button4 = Tkinter.Button(top, text = "Myworkplace", command = mwpl)
+Button4.pack()
+
+Button5  = Tkinter.Button(top, text ="Volume regelen", command = vm)
+Button5.pack()
+
+Button6  = Tkinter.Button(top, text ="Myworkplace editor", command = mywpled)
+Button6.pack()
+
+Button7  = Tkinter.Button(top, text ="Uitloggen", command = lout)
+Button7.pack()
+
+Button8  = Tkinter.Button(top, text ="Herstarten", command = rboot)
+Button8.pack()
+
+Button9 = Tkinter.Button(top, text = "Afsluiten", command = pwoff)
+Button9.pack()
+
+
+
+termf = Frame(top, height=1000, width=1000)
+
+termf.pack(fill=BOTH, expand=YES)
+wid = termf.winfo_id()
+
+
+def send_entry_to_terminal(*args):
+    """*args needed since callback may be called from no arg (button)
+   or one arg (entry)
+   """
+    cmd("%s" % (BasicCovTests))
+
+if __name__ == "__main__":
+	top.title('KEUZE MENU')
+	top.mainloop()
+

@@ -1,0 +1,2 @@
+whiptail --title "alsamixer" --msgbox "Om het volume te regelen gebruikt u de pijltjes toetsen omhoog en omlaag, druk op enter om door te gaan" 12 50
+alsamixer
