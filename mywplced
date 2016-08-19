@@ -1,12 +1,12 @@
 #!/bin/bash 
-
-name=$(whiptail --inputbox "typ het http://myworkplace.addres.nl" 10 70 3>&1 1>&2 2>&3)
+current=$(cat /usr/bin/TBm | awk '{print $8}'| sed 'N;s/\n/ /;N;s/\n/ /' |  sed 'N;s/\n/ /;N;s/\n/ /' |  sed 'N;s/\n/ /;N;s/\n/ /' | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{print $6}' | cut -d: -f2 | cut -d . -f2)
+name=$(whiptail --inputbox "typ het http://myworkplace.addres.nl, Huidige is in gesteld op $current" 10 70 "http://" 3>&1 1>&2 2>&3)
 whiptail --yesno "is dit adres ' $name ' goed?" --yes-button "Ja" --no-button "nee" 10 70
 CHOICEs=$?
 
 if [ $CHOICEs == 0 ];
 then
-sed -i -e '27d' /usr/bin/TBm
+sed -i -e '28d' /usr/bin/TBm
 echo "    os.system('xterm -into %d -geometry 160x38+0-0  -e firefox $name' % wid)" > add.txt
 sed -i '/def mwpl():/r add.txt' /usr/bin/TBm
 whiptail --msgbox "U moet nu de computer opnieuw opstarten, druk op OK om dit te doen" 10 70
